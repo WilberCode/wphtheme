@@ -18,3 +18,6 @@ import AnimateOnPageLinks from "./components/AnimateOnPageLinks";
 //     AnimateOnPageLinks.init();
 // });
  
+let  doc =  document.getElementsByTagName('body')
+console.log(doc, document)
+
