@@ -83,6 +83,14 @@ function wph_theme_support() {
 
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
+
+	register_nav_menus(array(
+		'main'=>'Menu Principal',
+		'mobile'=>'Menu Movil', 
+		'footer' =>'Footer Menú',
+		'social'=>'Social Media' 
+
+	)); 
  
 }
 
@@ -93,63 +101,38 @@ add_action( 'after_setup_theme', 'wph_theme_support' );
 
 //  Menus
 
-function wph_menus() {
+// function wph_menus() {
 
-	$locations = array(
-		'primary'  => __( 'Menu Principal', 'wph' ),
-		'expanded' => __( 'Menu Alternativo', 'wph' ),
-		'mobile'   => __( 'Menu Mobile', 'wph' ),
-		'footer'   => __( 'Menu Footer ', 'wph' ),
-		'social'   => __( 'Redes Sociales', 'wph' ),
-	);
+// 	$locations = array(
+// 		'primary'  => __( 'Menu Principal', 'wph' ),
+// 		'expanded' => __( 'Menu Alternativo', 'wph' ),
+// 		'mobile'   => __( 'Menu Mobile', 'wph' ),
+// 		'footer'   => __( 'Menu Footer ', 'wph' ),
+// 		'social'   => __( 'Redes Sociales', 'wph' ),
+// 	);
 
-	register_nav_menus( $locations );
-}
+// 	register_nav_menus( $locations );
+// 	 // register Menu 
+// }
 
-add_action( 'init', 'wph_menus' );
+// add_action( 'init', 'wph_menus' );
 
 
 
 // Widgets
-
-function wph_sidebar_registration() {
-
-	// Arguments used in all register_sidebar() calls.
-	$shared_args = array(
-		'before_title'  => '<h2 class="widget-title subheading heading-size-3">',
-		'after_title'   => '</h2>',
-		'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
-		'after_widget'  => '</div></div>',
-	);
-
-	// Footer #1.
-	register_sidebar(
-		array_merge(
-			$shared_args,
-			array(
-				'name'        => __( 'Footer #1', 'wph' ),
-				'id'          => 'sidebar-1',
-				'description' => __( 'Widgets in this area will be displayed in the first column in the footer.', 'wph' ),
-			)
-		)
-	);
-
-	// Footer #2.
-	register_sidebar(
-		array_merge(
-			$shared_args,
-			array(
-				'name'        => __( 'Footer #2', 'wph' ),
-				'id'          => 'sidebar-2',
-				'description' => __( 'Widgets in this area will be displayed in the second column in the footer.', 'wph' ),
-			)
-		)
-	);
-
+ 
+function wph_front_widgets(){
+    register_sidebar(array(
+        'name' => __('Footer Contact'),
+        'id' =>'footer_contact',
+        'description'   => 'Contactos de la empresa',
+        'before_widget' => '<div class="footer-contact">',
+        'after_widget'  => '</div>' 
+ 
+    )); 
+  
 }
-
-add_action( 'widgets_init', 'wph_sidebar_registration' );
-
+add_action('widgets_init', 'wph_front_widgets');
 
 // Logo
 
@@ -201,4 +184,33 @@ function wph_get_custom_logo( $html ) {
 
 }
 
-add_filter( 'get_custom_logo', 'wph_get_custom_logo' );
+add_filter( 'get_custom_logo', 'wph_get_custom_logo' ); 
+
+
+
+//Menu
+function wph_setup(){ 
+  add_theme_support('html5', array(
+    'comment-list',
+    'comment-form',
+    'search-form',
+    'gallery',
+    'caption'
+  ));
+  add_theme_support( 'post-formats', array ( 
+    'aside',
+    'gallery',
+    'link',
+    'image',
+    'quote',
+    'status',
+    'video',
+    'audio',
+    'chat' 
+    ) ); 
+  add_theme_support('post-thumbnails'); 
+  add_theme_support('title-tag');
+  add_theme_support('automatic-feed-links'); //Para lectures de RSD
+  remove_action('wp_head', 'wp_generator'); //Eliminar La version de  wordpress del codigo
+}
+add_action('after_setup_theme', 'wph_setup');

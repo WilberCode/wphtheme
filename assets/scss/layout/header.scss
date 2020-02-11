@@ -1,0 +1,17 @@
+.header{
+    &-logo{ 
+    }
+    &-nav{
+           @apply  h-full flex justify-end ;
+    }
+    &-menu{
+        @apply flex m-0 h-full;
+        .menu-item{
+              @apply block ml-4 ;
+            a{
+                @apply block h-full flex items-center ;
+                
+            }
+        }
+    }
+}

@@ -6,7 +6,5 @@
 @import "partials/components";
 @import "~tailwindcss/utilities";
 @import "partials/utilities"; 
-
-body{
-    background: #f8f8f8;
-}
+@import "layout/header"; 
+ 
