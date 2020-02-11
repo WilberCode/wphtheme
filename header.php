@@ -15,7 +15,7 @@
                     <a class="logo__title" href="<?php echo home_url();?>" rel="home">
                         <?php echo  '<h1 class="logo__title">'.get_bloginfo( "name" ).'</h1>'; ?>
                     </a>     
-                     <?php }?>
+                     <?php }?>    
         </div>
         <div class="lg:w-2/3" >
              <?php  
